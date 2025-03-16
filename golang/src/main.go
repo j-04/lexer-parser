@@ -1,12 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	"github.com/j-04/lexer-parser/golang/src/lexer"
 )
 
 func main() {
-	bytes, _ := os.ReadFile("./examples/00.lang")
+	bytes, _ := os.ReadFile("./examples/01.lang")
 	source := string(bytes)
-	fmt.Printf("Code: %s\n", source)	
+	tokens := lexer.Tokenize(string(source))
+	for _, token := range tokens {
+		token.Debug()
+	}	
 }

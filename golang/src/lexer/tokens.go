@@ -65,6 +65,24 @@ const (
 	IN
 )
 
+var reservedWords map[string]TokenKind = map[string]TokenKind{
+	"let": LET,
+	"const": CONST,
+	"class": CLASS,
+	"new": NEW,
+	"import": IMPORT,
+	"from":    FROM,
+	"fn":      FN,
+	"if":      IF,
+	"else":    ELSE,
+	"foreach": FOREACH,
+	"while":   WHILE,
+	"for":     FOR,
+	"export":  EXPORT,
+	"typeof":  TYPEOF,
+	"in":  IN,
+}
+
 type Token struct { 
 	Kind TokenKind
 	Value string
@@ -81,11 +99,12 @@ func (token Token) isOneOfMany(expectedTokens ...TokenKind) bool {
 }
 
 func (token Token) Debug() {
-	if token.isOneOfMany(IDENTIFIER, STRING, NUMBER) {
-		fmt.Printf("%s (%s)\n", TokenKindString(token.Kind), token.Value)	
-	} else {
-		fmt.Printf("%s ()\n", TokenKindString(token.Kind))
-	}
+	// if token.isOneOfMany(IDENTIFIER, STRING, NUMBER) {
+	// 	fmt.Printf("%s (%s)\n", TokenKindString(token.Kind), token.Value)	
+	// } else {
+	// 	fmt.Printf("%s ()\n", TokenKindString(token.Kind))
+	// }
+	fmt.Printf("%s (%s)\n", TokenKindString(token.Kind), token.Value)
 }
 
 func NewToken(kind TokenKind, value string) Token {
